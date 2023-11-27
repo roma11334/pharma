@@ -1,0 +1,30 @@
+.search{
+    max-width: 300px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 30px;
+  }
+  
+  .searchBtn{
+    position: absolute;
+    border:none;
+    background-color:transparent;
+    right: 12px;
+    bottom: 4px;
+    opacity: 0.4;
+    cursor: pointer;
+  }
+  
+  .searchImg{
+    width: 21px;
+  }
+  
+  .searchInput{
+    border:1px solid gray;
+    outline:none;
+    border-radius:20px;
+    padding: 10px;
+    width: 100%;
+    padding-right: 40px
+  }
