@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Menu.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveCategory } from '../store/slices/goodsSlice';
+import { setActiveCategory, setFilterGoods } from '../store/slices/goodsSlice';
 
 const Menu = () => {
 
@@ -34,6 +34,11 @@ const Menu = () => {
         "name": "Мастерон"
       }
       ]
+    
+      const onCategory = (el) => {
+        dispatch(setActiveCategory(el.key))
+        dispatch(setFilterGoods(el.key))
+      }
 
     return (
         <div className={styles.menu}>
@@ -43,7 +48,7 @@ const Menu = () => {
                         <li key={i} className={styles.menuItem}>
                             <a 
                                 className = {activeCategory == el.key ? styles.active : styles.menuLink}
-                                onClick={() => dispatch(setActiveCategory(el.key))}
+                                onClick={() => onCategory(el) }
                                 >{el.name}</a>
                         </li>
                     )}

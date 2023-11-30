@@ -12,7 +12,7 @@ const Goods = () => {
     const [isLoading, setIsLoading] = useState(true)
     const skeleton = [1,2,3]
 
-    const {goods, activeCategory, search, activePage} = useSelector((state) => state.goodsReducer)
+    const {goods, activeCategory, search, activePage, filterGoods} = useSelector((state) => state.goodsReducer)
     const dispatch = useDispatch()
 
     
@@ -29,12 +29,12 @@ const Goods = () => {
             })
         
 
-        axios.get(`https://65637ea2ee04015769a74a85.mockapi.io/drugs?page=${activePage}&limit=6` + categoryGet + searchGet)
+        axios.get(`https://65637ea2ee04015769a74a85.mockapi.io/drugs?page=${activePage}&limit=9` + categoryGet + searchGet)
             .then(res =>  {
                 dispatch(setGoods(res.data))
                 setIsLoading(false)
             })
-    },[activeCategory, search, activePage])
+    },[search, activeCategory])
 
 
     return (
