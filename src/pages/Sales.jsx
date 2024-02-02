@@ -6,12 +6,9 @@ import Footer from '../components/Footer/Footer';
 const Sales = () => {
     return (
         <div>
-            <Header/>
-            <Slider/>
             <div className="container">
                 <h1>SALEEEEEES</h1>
             </div>
-            <Footer/>
         </div>
     );
 };

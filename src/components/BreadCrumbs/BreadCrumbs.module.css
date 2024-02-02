@@ -1,0 +1,10 @@
+.box{
+    display: flex;
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+}
+
+.item{
+    margin-right: 5px;
+}

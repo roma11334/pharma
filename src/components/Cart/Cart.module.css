@@ -1,0 +1,142 @@
+.cartInner{
+    margin-top: 20px;
+}
+
+.title{
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;  
+    margin-bottom: 20px;
+    margin: auto 0 0 0;
+    position: relative;
+    padding-left: 30px; 
+}
+
+.title img{
+    width: 30px;
+    margin-right: 5px;
+    position: absolute;
+    left: 0;
+}
+
+.clear{
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    opacity: 0.6;
+    margin: auto 0 0 0;
+    position: relative;
+}
+
+.clear img{
+    width: 20px;
+    margin-right: 5px;
+}
+
+.clear:hover{
+    opacity: 1;
+}
+
+.headBox{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box{
+    height: 800px;
+    border-radius: 20px;
+    padding: 20px;  
+}
+
+.item{
+    height: 110px;
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid black;
+    align-items: center;
+}
+
+.itemTitle{
+    font-weight: bold;
+}
+
+.itemImg{
+    width: 100px;
+}
+
+.itemBtn{
+    width: 100px;
+    border-radius:20px;
+    border:1px solid slategray;
+    background-color:black;
+    cursor: pointer;
+    color:#fff;
+    padding: 6px;
+}
+
+.countBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.count{
+    padding: 10px;
+    font-size: 18px;
+}
+
+.countBtn{
+    border:none;
+    border-radius:50%;
+    background-color:black;
+    cursor: pointer;
+    color:#fff;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 2px;
+}   
+
+.countBtn:nth-child(3){
+    padding-top: 3px;
+}
+
+.bottomBox{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bottomItem{
+    padding: 6px;
+}
+
+.back{
+    border:1px solid black;
+    border-radius:20px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.submit{
+    border:1px solid black;
+    border-radius:20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    color:#fff;
+    background-color:black;
+}
+
+.empty{
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}

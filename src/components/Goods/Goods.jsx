@@ -1,54 +1,95 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Goods.module.css'
-import axios from 'axios';
 import Skeleton from '../Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllGoods, setGoods } from '../store/slices/goodsSlice';
-import Search from '../Search/Search';
-import debounce from 'debounce';
+import { clearItem, fetchAllGoods, fetchGoods, setFilters} from '../store/slices/goodsSlice';
+import qs from 'qs';
+import { Link, useNavigate } from 'react-router-dom';
+import { setAnimate, setCartItem } from '../store/slices/cartSlice';
+
 
 const Goods = () => {
 
-    const [isLoading, setIsLoading] = useState(true)
     const skeleton = [1,2,3]
 
-    const {goods, activeCategory, search, activePage} = useSelector((state) => state.goodsReducer)
-    const dispatch = useDispatch()
+    const {goods, activeCategory, search, activePage, status} = useSelector((state) => state.goodsReducer)
+    const {animate} = useSelector((state) => state.cartSlice)
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     
+    const isSearch = useRef(false)
+    const isMounted = useRef(false)
 
     useEffect(() => {
-        const categoryGet = activeCategory ? `&category=${activeCategory}` : ''
-        const searchGet = search ? `&search=${search}` : ''
-        
-        setIsLoading(true)
+        dispatch(fetchAllGoods())
+        dispatch(clearItem())
 
-        axios.get(`https://65637ea2ee04015769a74a85.mockapi.io/drugs`)
-            .then(res =>  {
-                dispatch(setAllGoods(res.data))
-            })
-        
+        if (window.location.search){
+            const newSearch = qs.parse(window.location.search.slice(1))
+            dispatch(
+                setFilters({...newSearch})
+            )
+            isSearch.current = true
+        }
+    }, [])
 
-        axios.get(`https://65637ea2ee04015769a74a85.mockapi.io/drugs?page=${activePage}&limit=6` + categoryGet + searchGet)
-            .then(res =>  {
-                dispatch(setGoods(res.data))
-                setIsLoading(false)
-            })
+    useEffect(() => {
+        if(!isSearch.current){
+            const categoryGet = activeCategory ? `&category=${activeCategory}` : ''
+            const searchGet = search ? `&search=${search}` : ''
+
+            dispatch(fetchGoods({activePage, searchGet, categoryGet}))
+            
+        }
+        isSearch.current = false
+        
     },[activeCategory, search, activePage])
 
+    useEffect(() => {
+        if(isMounted.current){
+            const queryString = qs.stringify({
+                activeCategory,
+                activePage
+            })
+            navigate(`?${queryString}`)
+        }
+       isMounted.current = true
+    }, [activeCategory, activePage])
+
+    const addToCart = (item) => {
+        dispatch(setCartItem(item))
+        setTimeout(() => {
+            dispatch(setAnimate())
+        },1000)
+    }
+
+    if(status === 'error'){
+        return (
+            <div>Error</div>
+        )
+    }
 
     return (
+        
         <div className={styles.items}>
-            {isLoading ? skeleton.map((res,i) => <Skeleton key={i}/>)
-                       :
-                        goods.map(item => 
-                            <div key={item.id} className={styles.item}>
-                                <img className={styles.itemImg} src={`./images/${item.img}`} alt=""/>
-                                <h2 className={styles.itemTitle}>{item.title}</h2>
-                                <span className={styles.itemPrice}>{item.price} грн</span>
-                                <button className={styles.itemBtn}>Купити</button>
-                            </div>
-                            )}
+            
+            {status === 'loading' && skeleton.map((res,i) => <Skeleton key={i}/>)}
+                       
+            {status === 'success' && goods.map(item => 
+                                    <div key={item.id} className={styles.item}>
+                                        <Link to={`/items/${item.id}`}> 
+                                            <img className={styles.itemImg} src={`./images/${item.img}`} alt=""/>  
+                                        </Link>
+                                        {animate && <img  className='cartAnimation' src={`./images/${animate}`} alt=""/>}
+                                        <Link to={`/items/${item.id}`}> 
+                                            <h2 className={styles.itemTitle}>{item.title}</h2>
+                                        </Link>
+                                        <span className={styles.itemPrice}>{item.price} грн</span>
+                                        <button onClick={() => addToCart(item)} className={styles.itemBtn}>Купити</button>
+                                    </div>
+                                    )}
+            
         </div>
     );
 };

@@ -23,7 +23,7 @@ a{
 }
 
 .main__page{
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .main__page-inner{
@@ -38,3 +38,41 @@ a{
     }
 }
 
+
+
+
+.cartAnimation {
+  animation: fly 1.5s 1;
+  top: -700px;
+  left: 100px;
+  position: fixed;
+  z-index: 9999;
+}
+
+@keyframes fly {
+  0%{
+      transform: translate(10vh, 90vh);
+      opacity: .80;
+      width: 60%
+  }
+  100%{
+      transform: translate(90vw, 10vh);
+      opacity: 0;
+      width: 0%
+  }
+}
+
+@media(max-width:660px){
+  @keyframes fly {
+    0%{
+        transform: translate(0vh, 140vh);
+        opacity: .80;
+        width: 60%
+    }
+    100%{
+        transform: translate(90vw, 10vh);
+        opacity: 0;
+        width: 0%
+    }
+  }
+}

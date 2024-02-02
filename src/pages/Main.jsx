@@ -8,10 +8,8 @@ import Pagination from '../components/Pagination/Pagination';
 const Main = () => {
     return (
         <div>
-            <Header/>
             <Content/>
             <Pagination/>
-            <Footer/>
         </div>
     );
 };

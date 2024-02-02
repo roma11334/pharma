@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Menu.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveCategory } from '../store/slices/goodsSlice';
+import { setActiveCategory, setActivePage, setAllGoods } from '../store/slices/goodsSlice';
 
 const Menu = () => {
 
-    const activeCategory = useSelector((state) => state.goodsReducer.activeCategory)
+    const {activeCategory, goods, goodsForPagination} = useSelector((state) => state.goodsReducer)
     const dispatch = useDispatch()
 
     const categories = [
@@ -35,6 +35,16 @@ const Menu = () => {
       }
       ]
 
+    const setCategory = (el) => {
+        dispatch(setActivePage(1))
+        dispatch(setActiveCategory(el.key))
+        dispatch(setAllGoods(goods))
+
+        if(el.key === ''){
+            dispatch(setAllGoods(goodsForPagination))
+        }
+    }
+
     return (
         <div className={styles.menu}>
             <h2 className={styles.menuTitle}>Спортивна фармакологія</h2>
@@ -43,7 +53,7 @@ const Menu = () => {
                         <li key={i} className={styles.menuItem}>
                             <a 
                                 className = {activeCategory == el.key ? styles.active : styles.menuLink}
-                                onClick={() => dispatch(setActiveCategory(el.key))}
+                                onClick={() => setCategory(el)}
                                 >{el.name}</a>
                         </li>
                     )}

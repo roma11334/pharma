@@ -16,6 +16,7 @@
     gap: 10px;
     border:2px solid black;
     border-radius:20px;
+
   }
   
   .itemImg{
@@ -40,6 +41,13 @@
     font-weight: bold;
     text-align: center;
   }
+
+  .remove{
+    pointer-events: none;
+    color:black;
+    font-size: 33px;
+  }
+
   
   @media(max-width:900px){
     .items{
@@ -52,3 +60,7 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
+
+
+
+  

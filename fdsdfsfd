@@ -1,0 +1,17 @@
+[33mcommit 8f9c38bbcc2d930891186f39cf4cfc59143803cf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: unknown <grekovroma@gmail.com>
+Date:   Thu Nov 30 11:41:02 2023 +0200
+
+    local search and filter
+
+[33mcommit cbe0b08e3507382a77d9d60fab5398cff9e4c59c[m
+Author: unknown <grekovroma@gmail.com>
+Date:   Mon Nov 27 17:21:25 2023 +0200
+
+    first commit
+
+[33mcommit cf6f607d239ef526c90556de5302a001ad732ec4[m
+Author: unknown <grekovroma@gmail.com>
+Date:   Sat Nov 25 17:09:54 2023 +0200
+
+    Initialize project using Create React App

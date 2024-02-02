@@ -2,16 +2,14 @@ import React from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Slider from '../components/Slider/Slider';
+import CartComponent from '../components/Cart/CartComponent';
 
 const Cart = () => {
     return (
         <div>
-            <Header/>
-            <Slider/>
             <div className="container">
-                <h1>KORZINAA</h1>
+                <CartComponent/>
             </div>
-            <Footer/>
         </div>
     );
 };

@@ -3,14 +3,15 @@ import Slider from '../Slider/Slider';
 import Menu from '../Menu/Menu';
 import Goods from '../Goods/Goods';
 import Search from '../Search/Search';
+import { useSelector } from 'react-redux';
 
 const Content = () => {
+    const {activeCategory} = useSelector((state) => state.goodsReducer)
     return (
         <main className="main">
-            <Slider/>
             <section className="main__page">
                 <div className="container">
-                <Search/>
+                {activeCategory === "" && <Search/>}
                     <div className="main__page-inner">
                         <Menu/>
                         <Goods/>

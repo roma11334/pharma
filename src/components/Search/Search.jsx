@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Search.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {setSearch} from '../store/slices/goodsSlice'
@@ -8,6 +8,10 @@ const Search = () => {
     const search = useSelector((state) => state.goodsReducer.search)
     const dispatch = useDispatch()
     const [inputValue, setInputValue] = useState('')
+
+    useEffect(() => {
+        dispatch(setSearch('')) //сбрасываем поиск после перехода на другую страницу или категорию
+    },[])
 
     const debounceInput = useCallback(
         debounce((e) => {

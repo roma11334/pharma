@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom';
-import Search from '../Search/Search';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const [menuBtn, setMenuBtn] = useState(false)
     const newMenu = menuBtn ? [styles.nav, styles.show].join(' ') : styles.nav
+    const {cartItems} = useSelector((state) => state.cartSlice)
+    const totalCount = cartItems.reduce((acc, el) => acc + el.count, 0)
 
     return (
         <header className={styles.header}>
@@ -28,8 +30,8 @@ const Header = () => {
                         </li>
                     </ul>
                     <Link className={styles.cart} to="/cart">
-                            <img src="images/cart.svg" alt="" />
-                            <span>1</span>
+                            <img src="/images/cart.svg" alt="" />
+                            {cartItems.length > 0 && <span>{totalCount}</span>}
                         </Link>
                     <button onClick={() => setMenuBtn(!menuBtn)} className={styles.menuBtn}>
                         <span></span><span className={styles.btnLine}></span><span></span>

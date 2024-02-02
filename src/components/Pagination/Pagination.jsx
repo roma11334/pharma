@@ -17,7 +17,7 @@ const Pagination = () => {
     return (
         <div className={styles.pagination}>
             {pages.map(el => 
-                <span key={el} onClick={() => dispatch(setActivePage(el))} >{el}</span>
+                <span className={activePage === el ? styles.active : ''} key={el} onClick={() => dispatch(setActivePage(el))} >{el}</span>
                 )}
         </div>
     );

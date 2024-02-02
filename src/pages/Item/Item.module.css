@@ -1,0 +1,41 @@
+.itemImg{
+    width: 400px;
+}
+
+.box{
+    border: 2px solid black;
+    border-radius:20px;
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+}
+
+.boxInner{
+    display: flex;
+}
+
+.inner{
+    margin-top: 40px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.title{
+    font-weight: bold;
+}
+
+.itemBtn{
+    width: 100px;
+    border-radius:20px;
+    border:1px solid slategray;
+    background-color:black;
+    cursor: pointer;
+    color:#fff;
+    padding: 6px 25px;  
+  }
+
+.description{
+    font-size: 18px;
+}
